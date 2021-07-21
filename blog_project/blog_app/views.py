@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
@@ -13,9 +13,10 @@ def create_post(req):
     if req.method=='GET':
         return render(req,'create_post.html')
     elif req.method=='POST':
-        new_post=Post.objects.create(heading=req.POST['Heading'],content=req.POST['Content'],author=req.user)
+        print(req)
+        new_post=Post.objects.create(heading=req.POST.get('Heading'),content=req.POST.get('Content'),author=req.user)
         new_post.save()
-        return HttpResponse('post creeated')
+        return redirect('view_post')
     else:
         return HttpResponse('error')
     
