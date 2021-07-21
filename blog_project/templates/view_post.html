@@ -1,0 +1,15 @@
+<html>
+<body>
+<p>posts created by you!</p>
+<ul>
+
+{% for instance in posts %}
+
+         <li><h1>{{ instance.heading }}</h1></li>
+         <p>{{instance.content}}</p>
+         <p>Author : {{instance.author}}</p>
+         
+{% endfor %}
+</ul>
+</body>
+</html>
